@@ -1,11 +1,14 @@
 # Django AADE ERP Registry
 
+Django project for interaction with the Provided Technical Support Services ERP Register application of AADE.
+
 ## Run
 
 ```shell
 $ python -m venv .venv
 $ source .venv/bin/activate
 $ cd aade_erp/
+$ pip install -r requirements.txt
 $ python manage.py migrate
 $ python manage.py runserver
 ```
