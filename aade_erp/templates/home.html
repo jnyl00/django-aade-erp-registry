@@ -1,0 +1,95 @@
+{% extends "index.html" %}
+{% load static %}
+
+
+{% block head_title %}Home | {{ jazzmin_settings.site_title }}{% endblock head_title %}
+
+{% block main_css %}
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'vendor/adminlte/css/adminlte.min.css' %}">
+    <!-- HTMX -->
+    <script src="{% static 'vendor/htmx/htmx.min.js' %}" defer></script>
+{% endblock main_css %}
+
+{% block body_classes %}hold-transition sidebar-mini{% endblock body_classes %}
+
+{% block content %}
+    <!-- Content Wrapper. Contains page content -->
+    <div id="content-div" class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Home</h1>
+                    </div><!-- /.col -->
+                    {% comment %} <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Starter Page</li>
+                        </ol>
+                    </div><!-- /.col --> {% endcomment %}
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+    
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card card-primary card-outline">
+                        <div class="card-body">
+                            {% if has_api_credentials %}
+                                <div class="alert alert-success">
+                                    <h5><i class="icon fas fa-check"></i> Info</h5>
+                                    Your API credentials are saved temporarily.
+                                </div>
+                            {% else %}
+                                <div class="alert alert-warning">
+                                    <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
+                                    Please enter your API credentials <a href="{% url 'api_credentials' %}">here</a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col-md-12 -->
+            </div>
+            <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+{% endblock content %}
+
+{% block main_footer %}
+    {% include "include/main_footer.html" %}
+{% endblock main_footer %}
+
+{% block control_sidebar %}
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+        <div class="p-3">
+            <h5>Title</h5>
+            <p>Sidebar content</p>
+        </div>
+    </aside>
+    <!-- /.control-sidebar -->
+{% endblock control_sidebar %}
+
+{% block main_js %}
+    <!-- jQuery -->
+    <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- AdminLTE App -->
+    <script src="{% static 'vendor/adminlte/js/adminlte.min.js' %}"></script>
+{% endblock main_js %}

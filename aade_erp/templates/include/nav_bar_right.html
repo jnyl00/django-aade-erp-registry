@@ -1,0 +1,25 @@
+{% load i18n static jazzmin %}
+{% get_jazzmin_settings request as jazzmin_settings %}
+{% get_jazzmin_ui_tweaks as jazzmin_ui %}
+
+
+<!-- Right navbar links -->
+<ul class="navbar-nav ml-auto">
+    <li class="nav-item dropdown">
+        <a class="nav-link btn" data-toggle="dropdown" href="#" title="{{ request.user }}">
+            <i class="far fa-user" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-left" id="jazzy-usermenu">
+            <span class="dropdown-header">{% trans 'Account' %}</span>
+            <div class="dropdown-divider"></div>
+            <form id="logout-form" method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="dropdown-item"><i class="fas fa-users mr-2"></i> {% translate 'Log out' %}</button>
+            </form>
+            <div class="dropdown-divider"></div>
+            {% if perms|can_view_self %}
+                <a href="{% jazzy_admin_url request.user request.current_app|default:"admin" %}" class="dropdown-item dropdown-footer">{% trans 'See Profile' %}</a>
+            {% endif %}
+        </div>
+    </li>
+</ul>

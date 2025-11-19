@@ -1,0 +1,16 @@
+{% load i18n static jazzmin %}
+{% get_jazzmin_settings request as jazzmin_settings %}
+{% get_jazzmin_ui_tweaks as jazzmin_ui %}
+
+
+<!-- Main Footer -->
+<footer class="main-footer {{ jazzmin_ui.footer_classes }}">
+    <!-- To the right -->
+    {% comment %} <div class="float-right d-none d-sm-inline">
+        <b>{% trans 'Version' %}</b> 3.2.0
+    </div> {% endcomment %}
+    <!-- Default to the left -->
+    {% autoescape off %}
+        <strong>{% trans 'Copyright' %} &copy; {% now 'Y' %} {{ jazzmin_settings.copyright }}.</strong> {% trans 'All rights reserved.' %}
+    {% endautoescape %}
+</footer>

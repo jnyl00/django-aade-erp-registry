@@ -1,0 +1,107 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">{{ component_title }}</h1>
+            </div><!-- /.col -->
+            {% comment %} <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">{{ component_title }}</li>
+                </ol>
+            </div><!-- /.col --> {% endcomment %}
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-primary card-outline">
+                <div class="card-header">
+                    <h5 class="m-0">Parameters</h5>
+                </div>
+                <div class="card-body">
+                    {% comment %} <h6 class="card-title">Special title treatment</h6>
+
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a> {% endcomment %}
+
+                    <form hx-post="" hx-target="#content-div" enctype="multipart/form-data">
+                        {% csrf_token %}
+                    
+                        {# Errors #}
+                        {% if form.errors %}
+                            <ul class="errorlist">
+                                {% if form.non_field_errors %}
+                                    {{ form.non_field_errors }}
+                                {% endif %}
+                                {% for field in form %}
+                                    {% if field.errors %}
+                                        <li>
+                                            {{ field.label }}
+                                            <ul class="errorlist">
+                                                {% for error in field.errors %}
+                                                    <li>{{ error }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+
+                        {# Form #}
+                        {% for field in form %}
+                            <div class="mb-3">
+                                {% render_field field class="form-control" placeholder=field.label %}
+                                {% if field.help_text %}
+                                    <i>{{ field.help_text }}</i>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    
+                        <button type="submit" class="btn btn-primary">
+                            Submit
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="card card-primary card-outline">
+                <div class="card-header">
+                    <h5 class="m-0">Response</h5>
+                </div>
+                <div class="card-body">
+                    {# Response #}
+                    <p>{{ component_response_str }}</p>
+
+                    {% if component_response.data.uploadedFiles %}
+                        <hr/>
+
+                        {% for uploaded_file in component_response.data.uploadedFiles %}
+                            {% if uploaded_file.transId %}
+                                <a href="{% url 'fetch_upload_info' trans_id=uploaded_file.transId %}">
+                                    <span>Info {{ uploaded_file.filename }} ({{ uploaded_file.uploadDate }})</span>
+                                </a>
+                                <a href="{% url 'fetch_upload_file' trans_id=uploaded_file.transId %}">
+                                    <span>Download {{ uploaded_file.filename }} ({{ uploaded_file.uploadDate }})</span>
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <!-- /.col-md-12 -->
+    </div>
+    <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content -->

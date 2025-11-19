@@ -1,0 +1,73 @@
+# --------------------
+# Python
+# --------------------
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+
+# Environment variables
+.env
+.env.*
+*.env
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Unit test / coverage reports
+.coverage
+.coverage.*
+htmlcov/
+.cache/
+.pytest_cache/
+nosetests.xml
+coverage.xml
+
+# --------------------
+# Django
+# --------------------
+
+# SQLite database
+db.sqlite3
+db.sqlite3-journal
+
+# Django migrations (optional: keep __init__.py)
+*/migrations/*.py
+!*/migrations/__init__.py
+
+# Static and media files
+staticfiles/
+static/
+media/
+
+# Django logs
+*.log
+
+# Local settings
+settings_local.py
+local_settings.py
+
+# --------------------
+# IDE / Editors
+# --------------------
+
+# VS Code
+.vscode/
+
+# PyCharm / JetBrains
+.idea/
+*.iml
+
+# --------------------
+# OS files
+# --------------------
+.DS_Store
+Thumbs.db
